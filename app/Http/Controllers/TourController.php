@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -21,7 +22,8 @@ class TourController extends Controller
      */
     public function create(Request $request)
     {
-        return view('pages.tours.detail');
+        $bookings = collect();
+        return view('pages.tours.detail', compact('bookings'));
     }
 
     /**
@@ -61,7 +63,10 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return view('pages.tours.detail', compact('tour'));
+        $bookings = Booking::select('id','customer_name','customer_email','people_count','total_price')
+                    ->where('tour_id',$tour->id)
+                    ->paginate(25);
+        return view('pages.tours.detail', compact('tour','bookings'));
     }
 
     /**

@@ -11,7 +11,6 @@
       <th scope="col">Customer Name</th>
       <th scope="col">Tour Name</th>
       <th scope="col">Customer Email</th>
-      <th scope="col" class="text-end">Price</th>
       <th scope="col" class="text-center">People</th>
       <th scope="col" class="text-end">Total Price</th>
     </tr>
@@ -25,9 +24,12 @@
                     {{ $booking->customer_name }}
                 </a>
             </td>
-            <td>{{$booking->tour->name}}</td>
+            <td>
+                <a href="{{ route('tours.show', $booking->tour->id) }}" class="text-blue-500 hover:underline">
+                {{ $booking->tour->name }}
+                </a>
+            </td>
             <td>{{$booking->customer_email}}</td>
-            <td class="text-end">${{ number_format($booking->tour->price, 2) }}</td>
             <td class="text-center">{{$booking->people_count}}</td>
             <td class="text-end">${{ number_format($booking->total_price, 2) }}</td>
         </tr>

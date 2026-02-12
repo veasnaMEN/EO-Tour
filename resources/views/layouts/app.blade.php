@@ -1522,8 +1522,12 @@
         }
 
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
             height: 100vh;
-            background: #343a40;
+            width: 250px;
+            background-color: #212529;
         }
 
         .sidebar .nav-link {
@@ -1533,6 +1537,10 @@
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
             background: #495057;
+        }
+        .content {
+            margin-left: 250px; /* Same width as sidebar */
+            padding: 20px;
         }
         .valid-message {
             color: #dc3545;
@@ -1544,10 +1552,10 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row">
+        <div>
 
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse bg-dark p-0">
+            <nav class="sidebar">
                 <div class="position-sticky pt-3">
                     <h4 class="text-white text-center">Tour Management</h4>
                     <ul class="nav flex-column mt-4">
@@ -1588,7 +1596,7 @@
             </nav>
 
             <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10">
+            <main class="content">
                 <nav class="navbar py-4">
                     <div class="container-fluid p-0">
                         <h4>@yield('title')</h4>

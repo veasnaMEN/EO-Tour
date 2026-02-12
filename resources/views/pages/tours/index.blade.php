@@ -65,6 +65,5 @@
 
     </ul>
 </nav>
-
 </div>
 @endsection

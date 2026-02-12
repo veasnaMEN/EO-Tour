@@ -13,7 +13,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with('tour')
+        $bookings = Booking::select('id','tour_id','customer_name','customer_email','people_count','total_price')
+                        ->with('tour')
                         ->orderBy('created_at', 'desc')
                         ->paginate(25);
         return view('pages.bookings.index', compact('bookings'));
@@ -85,7 +86,6 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         try {
             $request->validate([
                 'customer_name' => 'required',
